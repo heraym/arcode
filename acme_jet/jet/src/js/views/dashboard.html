@@ -1,0 +1,90 @@
+<!--
+ Copyright (c) 2014, 2017, Oracle and/or its affiliates.
+ The Universal Permissive License (UPL), Version 1.0
+ -->
+<div>
+  <div class="oj-applayout-fixed-top">
+      <!--
+       ** Oracle JET V2.3.0 hybrid mobile application header pattern.
+       ** Please see the Oracle JET Cookbook App Shell: Hybrid Mobile demos for
+       ** more information on how to use this pattern.
+    -->
+    <header role="banner" class="oj-hybrid-applayout-header" data-bind="ojModule: headerConfig">
+    </header>
+  </div>
+  <!-- This is where your main page content will be loaded -->
+  <div class="oj-applayout-content">
+    <div role="main" class="oj-hybrid-applayout-content">
+      <div class="oj-hybrid-padding">
+        <h3>Demo JET</h3>
+        <div>
+    <div data-bind="visible: !isLoggedIn()" class="oj-flex oj-sm-flex-direction-column oj-md-flex-direction-column"> 
+      <div class="oj-flex-item">
+        <label for="text-input">Usuario</label>
+        <input id="text-input" type="text" data-bind="ojComponent: {component: 'ojInputText', value: username}"/>
+      </div>
+      <div class="oj-flex-item">
+        <label for="password">Password</label>
+        <input type="password" id="password" data-bind="ojComponent: {component: 'ojInputPassword', value: password}"/>
+      </div>
+      <div class="oj-flex-item">
+        <input id="inputButton" type="button" data-bind="click: login, ojComponent: {component: 'ojButton', label: 'Login', chroming: 'full'}"/>
+      </div>
+    </div> 
+  </div>
+  <div data-bind="visible: isLoggedIn">
+    <input id="inputButton" type="button" data-bind="click: logout, ojComponent: {component: 'ojButton', label: 'Logout', chroming: 'full'}"/> 
+ 
+    <!--<input id="inputButton" type="button" data-bind="click: takePicture, ojComponent: {component: 'ojButton', label: 'Take a picture', chroming: 'none'}"/> 
+    <br>
+    <img id="cameraImage" src="" height="250" width="100%" data-bind="attr: { src: picture }">
+ 
+    <input id="inputButton" type="button" data-bind="click: uploadPicture, ojComponent: {component: 'ojButton', disabled: (picture() === null), label: 'Upload to MCS', chroming: 'half'}"/> -->
+  </div> 
+
+<div id='chart-container' data-bind="visible: isLoggedIn">
+    <div id="barChart" data-bind="ojComponent: {
+            component: 'ojChart', 
+            type: 'bar', 
+            orientation: orientationValue,
+            stack: stackValue,
+            series: barSeriesValue, 
+            groups: barGroupsValue, 
+            animationOnDisplay: 'auto',
+            animationOnDataChange: 'auto',
+            hoverBehavior: 'dim'
+        }"
+         style="max-width:500px;width:100%;height:350px;">
+    </div>
+    <div id="myToolbar" aria-label="Chart Display Options Toolbar" aria-controls="barChart"
+       data-bind="ojComponent: {component:'ojToolbar'}"
+       style="max-width:500px;width:100%;">
+        <!-- vertical/horizontal toggle button -->
+        <div id="radioButtonset" data-bind="ojComponent: {component: 'ojButtonset', focusManagement:'none', checked: orientationValue, chroming: 'half'}" 
+             aria-label="Choose an orientation.">
+            <!-- ko foreach: orientationOptions -->
+              <label data-bind="attr: {for: id}"></label>
+              <input type="radio" name="orientation"
+                   data-bind="value: value, attr: {id: id},
+                   ojComponent: {component: 'ojButton', label: label, 
+                                     icons: {start: icon}, display: 'icons'}"/>
+            <!-- /ko -->
+        </div>
+        <span role="separator" aria-orientation="vertical" class="oj-toolbar-separator"></span>
+        <!-- unstacked/stacked toggle button -->
+        <div id="radioButtonset2" data-bind="ojComponent: {component: 'ojButtonset', focusManagement:'none', checked: stackValue, chroming: 'half'}" 
+             aria-label="Choose a stack setting.">
+            <!-- ko foreach: stackOptions -->
+              <label data-bind="attr: {for: id}"></label>
+              <input type="radio" name="stack"
+                   data-bind="value: value, attr: {id: id},
+                   ojComponent: {component: 'ojButton', label: label, 
+                                     icons: {start: icon}, display: 'icons'}"/>
+            <!-- /ko -->
+        </div>
+    </div>
+</div>
+      </div>
+    </div>
+  </div>
+</div>
